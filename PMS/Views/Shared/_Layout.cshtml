@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>..:: @ViewBag.Title - KELSEY CARLISLE ::..</title>
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/img/favicon.ico")">
+
+    <!-- bootstrap iN core CSS -->
+    <link href="@Url.Content("~/Content/css/bootstrap.css")" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="@Url.Content("~/Content/css/custom.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/media.css")" rel="stylesheet">
+    <script src="https://use.fontawesome.com/c995198f36.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <script src="@Url.Content("~/Content/js/sc-device.min.js")"></script>
+</head>
+<body class="top-in">
+    <nav id="stuck_container" class="navbar navbar-inverse stuck_container" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <!-- <img class="img-responsive" src="img/mine-h.png" id="stc"> -->
+                    <h1 id="stc">
+                        KELSEY CARLISLE
+                        <small>Actress, Chicago IL</small>
+                    </h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "", @id="liHome" })</li>
+                    <li>@Html.ActionLink("About", "Index", "About", new { }, new { @class = "", @id = "liAbout" })</li>
+                    <li>@Html.ActionLink("Resume", "Index", "Resume", new { }, new { @class = "", @id = "liResume" })</li>
+                    <li>@Html.ActionLink("Reel", "Index", "Reel", new { }, new { @class = "", @id = "liReel" })</li>
+                    <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { }, new { @class = "", @id = "liGallery" })</li>
+                    <li>@Html.ActionLink("Contact", "Index", "Contact", new { }, new { @class = "", @id = "liContact" })</li>
+                    <!-- <li class="dropdown"> <a href="http://sass-lang.com/" class="dropdown-toggle" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">Blog <b class="caret"></b></a>
+                      //class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+                      <b class="caret-m dropdown-toggle" data-toggle="collapse" data-target=".dropdown-menu-1"><i
+                          class="fa fa-arrow-down"></i></b>
+                      <ul class="dropdown-menu dropdown-menu-1 collapse">
+                        <li><a href="blog-home-1.html">Blog Home 1</a></li>
+                        <li><a href="blog-home-2.html">Blog Home 2</a></li>
+                        <li><a href="blog-post.html">Blog Post</a></li>
+                      </ul>
+                    </li> -->
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+    <div class="section section-colored-footer">
+        <div class="container">
+            <a href="#" class="cd-top">Top</a>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <p class="text-center text-capitalize">
+                            Copyright &copy;
+                            <a href="https://www.kelseycarlisle.com/"
+                               target="_blank">KelseyCarlisle</a> 2020-@DateTime.Now.AddYears(1).Year.
+                        </p>
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                        <a href="https://www.instagram.com/kelsocarl/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>&nbsp;&nbsp;
+                        <a href="https://www.facebook.com/kelsocarl" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>&nbsp;&nbsp;
+                        <a href="http://twitter.com/KELSOCARL" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+    <script src="@Url.Content("~/Content/js/jquery-3.5.1.js")"></script>
+    <script src="@Url.Content("~/Content/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/js/bttop.js")"></script>
+    <script src="@Url.Content("~/Content/js/sc-script.js")"></script>
+    <script src="@Url.Content("~/Content/js/ssc-slimscroll.js")"></script>
+    <script>
+        jQuery(function () {
+            "use strict";
+            //SLIMSCROLL FOR CHAT WIDGET
+            jQuery('#chat-box').slimScroll({
+                height: '450px'
+            });
+            jQuery('#chat-boxx').slimScroll({
+                height: '500px'
+            });
+        });
+        function setActiveMenu(id) {
+            $('li').each(function () {
+                $(this).removeClass('active');
+            });
+            $('#' + id).addClass('active');
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

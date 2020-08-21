@@ -1,0 +1,71 @@
+/* 
+Custom CSS for...
+'bootstrap iN' HTML Theme by Start bootstrap iN
+
+All Start bootstrap iN themes are licensed under Apache 2.0. 
+For more info and more free bootstrap iN HTML themes, visit http://startbootstrap.com!
+*/
+
+
+/* wirn - for hover dropdown in only from 768 view to 5000 view :)*/
+
+@media (min-width:768px) {
+	ul.nav li.dropdown ul { display: none; }
+	ul.nav li.dropdown:hover ul { display: block; }
+	ul.nav li.dropdown ul li.dropdown-submenu ul { display: none; }
+	ul.nav li.dropdown ul li.dropdown-submenu:hover ul { display: block; }
+	ul.nav li.dropdown ul { display: none; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; max-height: 0; display: block; overflow: hidden; opacity: 0; }
+	ul.nav li.dropdown:hover ul { display: block; max-height: 225px; opacity: 1; }
+	.caret-m { display: none; }
+	.section-table-collapsible table.table table.table-inner tbody { display: table; }
+	.section-table-collapsib table.table table.table-inner tbody { display: table-row-group; }
+	a.navbar-small-resolutionz { display: none; }
+	a.navbar-big-resolutionz { display: block; }
+	.navbar-middle .navbar-header { float: none; display: inline-block; position: absolute; width: 13%; margin: auto; left: 0; right: 0; top: 0; bottom: 0; z-index: 99; }
+	.navbar-middle .navbar-header .navbar-big-resolutionz { margin: 0; }
+	.navbar-middle.navbar-hight .navbar-header { float: none; display: inline-block; position: relative; width: auto; margin: auto; left: 0; right: 0; top: 0; bottom: 0; z-index: 99; }
+	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { margin-left: 0px; }
+	.navbar-middle.navbar-hight .navbar-header .navbar-brand { min-height: 70px; margin: 1em auto; padding: 0 0.8em; }
+}
+
+/* wirn - Responsive Styles with Default Media's */
+
+@media (max-width:1299px) {
+	html, body { width: auto; padding-top: 0; }
+
+}
+
+@media (max-width:1099px) {
+	html, body { width: auto; padding-top: 0; }
+
+}
+
+@media (max-width:991px) {
+	html, body { width: auto; padding-top: 0; }
+	.navbar-nav{ float:none; text-align:center;}
+	.navbar-header{ float:none; text-align:center;}
+	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand{ margin:0;}
+	.navbar-brand{ float:none; display:inline-block; width:auto;}
+	.navbar-nav > li{ display:inline-block; float:none; width:auto;}
+	.navbar-right{ float:none !important; margin:0;}
+	.dropdown-submenu > .dropdown-menu{ right:100%; left:auto;}
+
+}
+@media (max-width: 767px) {
+	html, body { width: auto; padding-top: 0; }
+	.navbar{ margin-bottom:0;}
+	.navbar-fixed-top{ position:inherit;}
+	.navbar-toggle{ position:absolute; right:-0.5em; top: 3.5em; z-index:987; padding: 0;}
+	.navbar-brand { display: block; float: none; font-size: inherit; height: auto; line-height: normal; padding: 15px; text-align: center; width: 100%;}	
+	.navbar-nav > li{ display:inline-block; width:100%;}
+	.navbar-nav > li > a, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a{ text-align:center; position:relative;}
+	.navbar-inverse .navbar-toggle{ border-color: transparent; border-radius:0; background: none;}
+	.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus { background: none;}
+	.navbar-inverse .navbar-brand h1{ font-size: 25px;}
+	.navbar-inverse .navbar-brand h1 small{ display:inline-block; width:100%; font-size: 12px;}
+	.isStuck.navbar-inverse .navbar-toggle{ background-color: transparent; border-color: transparent; background: none;}
+	.isStuck.navbar-inverse .navbar-toggle .icon-bar{ background-color: #495057;}
+	.sr-only{ display: none;}
+
+}
+
