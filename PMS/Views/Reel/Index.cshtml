@@ -1,4 +1,6 @@
-﻿
+﻿@model List<PMS.ViewModels.HomeViewModel>
+@using PMS.Helpers
+
 @{
     ViewBag.Title = "Reel";
 }
@@ -7,10 +9,20 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2>Commercial Reel</h2>
+                @*HEADER*@
+                <h2>@Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Header).Select(s => s.Description).FirstOrDefault()</h2>
                 <p>&nbsp;</p>
+
+                @*BODY*@
                 <div class="embed-responsive embed-responsive-4by3">
-                    <iframe src="https://www.youtube.com/embed/wawmdKX6Ve0" width="100%" height="800px" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    @*foreach loop and video tag*@
+                    @foreach (var videoitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Video))
+                    {
+                        <video width="100%" height="800px" controls>
+                            <source src="@Url.Content(videoitem.Description)" type="video/mp4">
+                        </video>
+                    }
+
                 </div>
 
                 <p>&nbsp;</p>

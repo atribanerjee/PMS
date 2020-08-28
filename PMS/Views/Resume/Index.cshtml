@@ -1,4 +1,6 @@
-﻿
+﻿@model List<PMS.ViewModels.HomeViewModel>
+@using PMS.Helpers
+
 @{
     ViewBag.Title = "Resume";
 }
@@ -7,11 +9,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2>My resume</h2>
+                @*HEADER*@
+                <h2>@Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Header).Select(s => s.Description).FirstOrDefault()</h2>
                 <p>&nbsp;</p>
 
+                @*BODY*@
                 <div class="embed-responsive embed-responsive-4by3">
-                    <iframe src="Content/media/sample.pdf" width="100%" height="1000px" frameborder="0"></iframe>
+                    <iframe src="@Url.Content(Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Body).Select(s => s.Description).FirstOrDefault())" width="100%" height="1000px" frameborder="0"></iframe>
+                    @*<iframe src="Content/media/sample.pdf" width="100%" height="1000px" frameborder="0"></iframe>*@
                 </div>
 
                 <!-- <div class="embed-responsive embed-responsive-4by3">

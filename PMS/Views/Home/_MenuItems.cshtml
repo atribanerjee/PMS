@@ -1,0 +1,17 @@
+﻿@model List<PMS.ViewModels.HomeViewModel>
+
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav navbar-right">
+        @foreach (var menuitem in Model)
+        {
+            <li>@Html.ActionLink(menuitem.Name, "Index", menuitem.Name, new { }, new { @class = "", @id = "li" + menuitem.Name })</li>
+        }
+        @*<li>@Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "", @id = "liHome" })</li>
+            <li>@Html.ActionLink("About", "Index", "About", new { }, new { @class = "", @id = "liAbout" })</li>
+            <li>@Html.ActionLink("Resume", "Index", "Resume", new { }, new { @class = "", @id = "liResume" })</li>
+            <li>@Html.ActionLink("Reel", "Index", "Reel", new { }, new { @class = "", @id = "liReel" })</li>
+            <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { }, new { @class = "", @id = "liGallery" })</li>
+            <li>@Html.ActionLink("Contact", "Index", "Contact", new { }, new { @class = "", @id = "liContact" })</li>*@
+
+    </ul>
+</div>

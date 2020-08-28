@@ -1,6 +1,10 @@
-﻿@{
+﻿@model List<PMS.ViewModels.HomeViewModel>
+@using PMS.Helpers
+
+@{
     ViewBag.Title = "Gallery";
     Layout = "~/Views/Shared/_GalleryLayout.cshtml";
+    int cnt = 1;
 }
 
 <div class="modal fade modal-gal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -14,13 +18,26 @@
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="false">
                     <div role="listbox" class="carousel-inner">
-                        <div class="item active">
-                            <img alt="Gallery Picture" src="~/Content/img/gallery/big1.jpg">
-                        </div>
 
-                        <div class="item">
-                            <img alt="Gallery Picture" src="~/Content/img/gallery/big2.jpg">
-                        </div>
+                        @foreach (var headshotitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.GalleryHeadShotImage))
+                        {
+                            if (cnt == 1)
+                            {
+                                <div class="item active">
+                                    <img alt="Gallery Picture" src="@Url.Content(headshotitem.Description)">
+                                </div>
+
+                                cnt += 1;
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <img alt="Gallery Picture" src="@Url.Content(headshotitem.Description)">
+                                </div>
+                            }
+
+                        }
+
                     </div>
 
                     <a data-slide="prev" role="button" href="#myCarousel" class="left carousel-control">
@@ -39,103 +56,82 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 portfolio ">
-                <h2>Gallery</h2>
+                @*HEADER*@
+                <h2>@Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Header).Select(s => s.Description).FirstOrDefault()</h2>
             </div>
         </div>
         <div class="row portfolio section-description wow fadeIn">
-            <div class="col-sm-12 portfolio-filters wow fadeInUp">
-                <a href="#" class="filter-all active">All</a> /
-                <a href="#" class="filter-design">Headshots</a> / <a href="#" class="filter-development">
-                    On the
-                    Job
-                </a> / <a href="#" class="filter-branding">Modeling</a>
-            </div>
+            @Html.Raw(Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.SubHeader).Select(s => s.Description).FirstOrDefault())
+
         </div>
         <div class="row portfolio section-description wow fadeIn">
             <div class="col-sm-12 portfolio-masonry">
-                <div class="portfolio-box design">
-                    <a href="#" data-toggle="modal" data-target="#myModal">
-                        <img src="~/content/img/gallery/1.jpg" alt="" data-at2x="~/content/img/gallery/1.jpg">
-                    </a>
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Trilli Bi template</p>
+                @foreach (var headshotitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.GalleryHeadShotImage))
+                {
+                    <div class="portfolio-box design">
+                        <a href="#" data-toggle="modal" onclick="ShowModal(10);">
+                            <img src="@Url.Content(headshotitem.Description)" alt="@headshotitem.ImageText">
+                        </a>
+                        <div class="portfolio-box-text-container">
+                            <div class="portfolio-box-text">
+                                <p>@headshotitem.ImageText</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="portfolio-box development">
-                    <img src="~/content/img/gallery/2.jpg" alt=""
-                         data-at2x="~/content/img/gallery/2.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Sit amet logo</p>
+                }
+
+                @foreach (var onthejobitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.GalleryOnTheJobImage))
+                {
+
+                    <div class="portfolio-box development">
+                        <a href="#" data-toggle="modal" onclick="ShowModal(11);">
+                            <img src="@Url.Content(onthejobitem.Description)" alt="@onthejobitem.ImageText">
+                        </a>
+
+                        <div class="portfolio-box-text-container">
+                            <div class="portfolio-box-text">
+                                <p>@onthejobitem.ImageText</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="portfolio-box branding">
-                    <img src="~/content/img/gallery/1.jpg" alt=""
-                         data-at2x="~/content/img/gallery/3.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Aeria app page</p>
+                }
+
+                @foreach (var modellingitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.GalleryModelingImage))
+                {
+                    <div class="portfolio-box branding">
+                        <a href="#" data-toggle="modal" onclick="ShowModal(12);">
+                            <img src="@Url.Content(modellingitem.Description)" alt="@modellingitem.ImageText">
+                        </a>
+                        <div class="portfolio-box-text-container">
+                            <div class="portfolio-box-text">
+                                <p>@modellingitem.ImageText</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="portfolio-box development">
-                    <img src="~/content/img/gallery/2.jpg" alt=""
-                         data-at2x="~/content/img/gallery/4.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Etiam processus dynamicus</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-box design">
-                    <img src="~/content/img/gallery/1.jpg" alt=""
-                         data-at2x="~/content/img/gallery/5.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>March notare site</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-box development">
-                    <img src="~/content/img/gallery/2.jpg" alt=""
-                         data-at2x="~/content/img/gallery/6.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Mirum est notare</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-box design">
-                    <img src="~/content/img/gallery/1.jpg" alt=""
-                         data-at2x="~/content/img/gallery/7.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Celic template</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-box development">
-                    <img src="~/content/img/gallery/2.jpg" alt=""
-                         data-at2x="~/content/img/gallery/8.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Sit amet logo</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-box branding">
-                    <img src="~/content/img/gallery/1.jpg" alt=""
-                         data-at2x="~/content/img/gallery/9.jpg">
-                    <div class="portfolio-box-text-container">
-                        <div class="portfolio-box-text">
-                            <p>Jalia business</p>
-                        </div>
-                    </div>
-                </div>
+                }
+
             </div>
         </div>
     </div>
 </div>
+@*JAVASCRIPT FOR SHOWING MODAL, SHOWING IMAGES*@
+
+<script>
+    function ShowModal(galleryType) {
+        $.ajax({
+                type: "GET",
+                url: "@Url.Action("ModalImages", "Gallery")",
+            data: { imageType: galleryType },
+                contentType: "application/html; charset=utf-8",
+                success: function (data) {
+                    $('#myCarousel').html('');
+                    $('#myCarousel').html(data);
+                    $('#myModal').modal('show');
+                },
+                error: function (arg) {
+                    alert("Error");
+                }
+
+            });
+    }
+</script>

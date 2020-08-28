@@ -1,4 +1,6 @@
-﻿
+﻿@model List<PMS.ViewModels.HomeViewModel>
+@using PMS.Helpers
+
 @{
     ViewBag.Title = "Contact";
 }
@@ -6,21 +8,19 @@
 <div class="section section- colored">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12"> <img class="img-responsive" src="~/content/img/contact/contact.png"> </div>
+            <div class="col-lg-9 col-md-9 col-sm-12">
+                @*IMAGE*@
+                @foreach (var imageitem in Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Image))
+                {
+                    <img class="img-responsive" src="@Url.Content(imageitem.Description)">
+                }
+            </div>
             <div class="col-lg-3 col-md-3 col-sm-12">
-                <h2>NV Talent</h2><br>
+                @*HEADER*@
+                <h2>@Html.Raw(Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Header).Select(s => s.Description).FirstOrDefault())</h2><br>
                 <div>
-                    <p class="big-text1">
-                        Brett Sechrist, Agent <br>
-                        312-563-0136 <br>
-                        brett@nvtalent.com <br>
-                        nvtalent.com <br>
-                    </p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>Stay in touch with me ...</p>
-                    <p>&nbsp;</p><p>&nbsp;</p>
+                    @*BODY*@
+                    @Html.Raw(Model.Where(w => w.TypeID == (int)PMSUtilities.MasterType.Body).Select(s => s.Description).FirstOrDefault())
                 </div>
             </div>
         </div>

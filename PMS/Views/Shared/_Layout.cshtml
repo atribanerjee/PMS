@@ -1,11 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@using PMS.ViewModels
+@using PMS.Helpers
+@{ 
+    PMS.Models.HomeModel obj = new PMS.Models.HomeModel();
+    List<HomeViewModel> lstPage = obj.GetPageItems((int)PMSUtilities.PageType.Home);
+    string siteHeader = lstPage.Where(w => w.TypeID == (int)PMSUtilities.MasterType.SiteHeader).Select(s => s.Description).FirstOrDefault();
+    string siteSubHeader = lstPage.Where(w => w.TypeID == (int)PMSUtilities.MasterType.SiteSubHeader).Select(s => s.Description).FirstOrDefault();
+    string website = lstPage.Where(w => w.TypeID == (int)PMSUtilities.MasterType.OtherFile).Select(s => s.Description).FirstOrDefault();
+    
+    //do HERE VARIABLE ASSIGNMENT
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>..:: @ViewBag.Title - KELSEY CARLISLE ::..</title>
+    <title>..:: @ViewBag.Title - @siteHeader ::..</title>
     <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/img/favicon.ico")">
 
     <!-- bootstrap iN core CSS -->
@@ -32,35 +45,14 @@
                 <a class="navbar-brand" href="@Url.Action("Index","Home")">
                     <!-- <img class="img-responsive" src="img/mine-h.png" id="stc"> -->
                     <h1 id="stc">
-                        KELSEY CARLISLE
-                        <small>Actress, Chicago IL</small>
+                        @siteHeader
+                        <small>@siteSubHeader</small>
                     </h1>
                 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { }, new { @class = "", @id="liHome" })</li>
-                    <li>@Html.ActionLink("About", "Index", "About", new { }, new { @class = "", @id = "liAbout" })</li>
-                    <li>@Html.ActionLink("Resume", "Index", "Resume", new { }, new { @class = "", @id = "liResume" })</li>
-                    <li>@Html.ActionLink("Reel", "Index", "Reel", new { }, new { @class = "", @id = "liReel" })</li>
-                    <li>@Html.ActionLink("Gallery", "Index", "Gallery", new { }, new { @class = "", @id = "liGallery" })</li>
-                    <li>@Html.ActionLink("Contact", "Index", "Contact", new { }, new { @class = "", @id = "liContact" })</li>
-                    <!-- <li class="dropdown"> <a href="http://sass-lang.com/" class="dropdown-toggle" data-toggle="collapse"
-                        data-target=".navbar-responsive-collapse">Blog <b class="caret"></b></a>
-                      //class="dropdown-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-                      <b class="caret-m dropdown-toggle" data-toggle="collapse" data-target=".dropdown-menu-1"><i
-                          class="fa fa-arrow-down"></i></b>
-                      <ul class="dropdown-menu dropdown-menu-1 collapse">
-                        <li><a href="blog-home-1.html">Blog Home 1</a></li>
-                        <li><a href="blog-home-2.html">Blog Home 2</a></li>
-                        <li><a href="blog-post.html">Blog Post</a></li>
-                      </ul>
-                    </li> -->
-
-                </ul>
-            </div>
+            @{Html.RenderAction("FetchMenuItems", "Home");}
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -78,15 +70,16 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <p class="text-center text-capitalize">
                             Copyright &copy;
-                            <a href="https://www.kelseycarlisle.com/"
-                               target="_blank">KelseyCarlisle</a> 2020-@DateTime.Now.AddYears(1).Year.
+                            <a href="@website"
+                               target="_blank">@siteHeader</a> 2020-@DateTime.Now.AddYears(1).Year.
                         </p>
                         <p>&nbsp;</p>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                        <a href="https://www.instagram.com/kelsocarl/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>&nbsp;&nbsp;
-                        <a href="https://www.facebook.com/kelsocarl" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>&nbsp;&nbsp;
-                        <a href="http://twitter.com/KELSOCARL" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                        @foreach (var socialitem in lstPage.Where(w => w.TypeID == (int)PMSUtilities.MasterType.SocialMediaLinks))
+                        {
+                            <a href="@Url.Content(socialitem.Description)" target="_blank"><i class="fab @socialitem.ImageText fa-2x"></i></a>@:&nbsp;&nbsp;
+                        }
                     </div>
                 </div>
             </footer>

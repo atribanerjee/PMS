@@ -1,0 +1,35 @@
+﻿@model List<PMS.ViewModels.HomeViewModel>
+@using PMS.Helpers
+@{ 
+    int cnt = 1;
+}
+
+<div role="listbox" class="carousel-inner">
+
+    @foreach (var headshotitem in Model)
+    {
+        if (cnt == 1)
+        {
+            <div class="item active">
+                <img alt="Gallery Picture" src="@Url.Content(headshotitem.Description)">
+            </div>
+
+            cnt += 1;
+        }
+        else
+        {
+            <div class="item">
+                <img alt="Gallery Picture" src="@Url.Content(headshotitem.Description)">
+            </div>
+        }
+
+    }
+
+</div>
+
+<a data-slide="prev" role="button" href="#myCarousel" class="left carousel-control">
+    <i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>
+</a>
+<a data-slide="next" role="button" href="#myCarousel" class="right carousel-control">
+    <i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>
+</a>
